@@ -39,13 +39,22 @@ function makeSound(key){
 }
 
 // Function to AnimateButtons
-function buttonAnimation(currentKey){
-    var activeButton = document.querySelector("."+currentKey);
-    activeButton.classList.add("pressed");
-    setTimeout(function(){
-        activeButton.classList.remove("pressed");
-    }, 100);
+function buttonAnimation(currentKey) {
+    var activeButton = $("." + currentKey);
+    activeButton.addClass("pressed");
+    activeButton.delay(100).queue(function(next) {
+        $(this).removeClass("pressed");
+        next();
+    });
 }
+
+// function buttonAnimation(currentKey){
+//     var activeButton = document.querySelector("."+currentKey);
+//     activeButton.classList.add("pressed");
+//     setTimeout(function(){
+//         activeButton.classList.remove("pressed");
+//     }, 100);
+// }
 
 //Detecting Button Press
 $(".drum").on("click", function () {
