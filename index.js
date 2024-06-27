@@ -1,4 +1,4 @@
-var numberOfDrumButtons = document.querySelectorAll(".drum").length;
+var numberOfDrumButtons = $(".drum").length;
 
 // Function to play sound
 function makeSound(key){
@@ -47,18 +47,16 @@ function buttonAnimation(currentKey){
     }, 100);
 }
 
-
 //Detecting Button Press
-for(var i = 0; i<numberOfDrumButtons; i++){
-    document.querySelectorAll(".drum")[i].addEventListener("click", function () {
-        var buttonInnerHTML = this.innerHTML;
-        makeSound(buttonInnerHTML); 
-        buttonAnimation(buttonInnerHTML);
-    });
-}
+$(".drum").on("click", function () {
+    var buttonInnerHTML = this.innerHTML;
+    makeSound(buttonInnerHTML); 
+    buttonAnimation(buttonInnerHTML);
+});
+
 
 //Detecting Keypress
-document.addEventListener("keydown", function(event){
+$(document).on("keypress", function(event){
     makeSound(event.key);
     buttonAnimation(event.key);
 });
